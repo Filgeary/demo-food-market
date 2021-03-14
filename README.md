@@ -2,4 +2,4 @@
 
 > my code is only JS
 
-Tabs
+Tabs, timer
