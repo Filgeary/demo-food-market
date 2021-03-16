@@ -2,6 +2,8 @@
 
 window.addEventListener('DOMContentLoaded', () => {
     // tabs
+    // =========================================================
+
     const tabs = document.querySelectorAll('.tabcontent');
     const tabItems = document.querySelectorAll('.tabheader__item');
     const tabHeader = document.querySelector('.tabheader__items');
@@ -40,6 +42,8 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     // timer
+    // =========================================================
+
     const deadline = '2022-01-01';
 
     function getTimeRemaining(endtime) {
@@ -102,4 +106,31 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     setClock('.timer', deadline);
+
+    // modal
+    // =========================================================
+
+    const modal = document.querySelector('.modal');
+
+    document.addEventListener('click', (evt) => {
+        const target = evt.target;
+
+        if (target && target.matches('[data-modal]')) {
+            modal.classList.toggle('hide');
+        }
+    });
+
+    modal.addEventListener('click', (evt) => {
+        const target = evt.target;
+
+        if (target && (target.matches('[data-modal-close]') || target === modal)) {
+            modal.classList.toggle('hide');
+        }
+    });
+
+    document.addEventListener('keydown', (evt) => {
+        if (evt.code === 'Escape' && !modal.classList.contains('hide')) {
+            modal.classList.toggle('hide');
+        }
+    });
 });
