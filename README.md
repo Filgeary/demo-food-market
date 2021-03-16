@@ -2,4 +2,4 @@
 
 > my code is only JS
 
-Tabs, timer, modal
+Tabs, timer, modal (open modal by timeout & scroll)
