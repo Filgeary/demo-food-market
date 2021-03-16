@@ -3,7 +3,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     // tabs
     // =========================================================
-
     const tabs = document.querySelectorAll('.tabcontent');
     const tabItems = document.querySelectorAll('.tabheader__item');
     const tabHeader = document.querySelector('.tabheader__items');
@@ -112,25 +111,50 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const modal = document.querySelector('.modal');
 
+    function toggleModal() {
+        modal.classList.toggle('hide');
+    }
+
+    // open modal
     document.addEventListener('click', (evt) => {
         const target = evt.target;
 
         if (target && target.matches('[data-modal]')) {
-            modal.classList.toggle('hide');
+            toggleModal();
+            clearTimeout(modalTimerId);
+            window.removeEventListener('scroll', onScrollModalOpen);
         }
     });
 
+    // close modal
     modal.addEventListener('click', (evt) => {
         const target = evt.target;
 
         if (target && (target.matches('[data-modal-close]') || target === modal)) {
-            modal.classList.toggle('hide');
+            toggleModal();
         }
     });
 
+    // close modal by 'Escape'
     document.addEventListener('keydown', (evt) => {
         if (evt.code === 'Escape' && !modal.classList.contains('hide')) {
-            modal.classList.toggle('hide');
+            toggleModal();
         }
     });
+
+    // open modal by timeout
+    const modalTimerId = setTimeout(toggleModal, 15000);
+
+    // open modal by scroll to the end of page
+    function onScrollModalOpen() {
+        if (
+            window.pageYOffset + document.documentElement.clientHeight >=
+            document.documentElement.scrollHeight
+        ) {
+            toggleModal();
+            window.removeEventListener('scroll', onScrollModalOpen);
+        }
+    }
+
+    window.addEventListener('scroll', onScrollModalOpen);
 });
