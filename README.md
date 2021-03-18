@@ -2,4 +2,7 @@
 
 > my code is only JS
 
-Tabs, timer, modal (open modal by timeout & scroll), Menu cards render
+- Tabs
+- timer
+- modal (open modal by timeout & scroll)
+- Menu cards render
