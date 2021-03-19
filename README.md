@@ -4,5 +4,5 @@
 
 - Tabs
 - Timer
-- Modal (open modal by timeout & scroll)
-- Menu cards render
+- Modal (open modal by timeout & scroll to the end of page)
+- Menu cards render (via JS classes)
