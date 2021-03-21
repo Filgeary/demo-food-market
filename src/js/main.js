@@ -3,6 +3,7 @@
 window.addEventListener('DOMContentLoaded', () => {
     // tabs
     // =========================================================
+
     const tabs = document.querySelectorAll('.tabcontent');
     const tabItems = document.querySelectorAll('.tabheader__item');
     const tabHeader = document.querySelector('.tabheader__items');
@@ -161,6 +162,8 @@ window.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', onScrollModalOpen);
 
     // menu cards render
+    // =========================================================
+
     class MenuCard {
         constructor(src, alt, title, description, price, parentSelector, ...classes) {
             this.src = src;
@@ -203,7 +206,7 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню "Фитнес"',
         'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
         319,
-        '.menu .container',
+        '.menu .container'
     ).render();
 
     new MenuCard(
@@ -212,7 +215,7 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню "Постное"',
         'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
         414,
-        '.menu .container',
+        '.menu .container'
     ).render();
 
     new MenuCard(
@@ -221,6 +224,38 @@ window.addEventListener('DOMContentLoaded', () => {
         'Меню “Премиум”',
         'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
         521,
-        '.menu .container',
+        '.menu .container'
     ).render();
+
+    // post FormData
+    // =========================================================
+
+    const forms = document.querySelectorAll('form');
+
+    forms.forEach((item) => {
+        item.addEventListener('submit', (evt) => {
+            evt.preventDefault();
+            postForm(item);
+        });
+    });
+
+    function postForm(form) {
+        const xhr = new XMLHttpRequest();
+        const url = 'https://echo.htmlacademy.ru';
+        const dataForm = new FormData(form);
+
+        xhr.open('POST', url);
+
+        xhr.addEventListener('load', () => {
+            if (xhr.status == 200) {
+                console.log(xhr.response);
+                form.reset();
+            } else {
+                console.log(`Error ${xhr.status}`);
+            }
+        });
+        xhr.onerror = () => console.log('ERROR UNKNOWN');
+
+        xhr.send(dataForm);
+    }
 });
