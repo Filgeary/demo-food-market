@@ -111,21 +111,23 @@ window.addEventListener('DOMContentLoaded', () => {
     // =========================================================
 
     const modal = document.querySelector('.modal');
+    const modalTrigger = document.querySelectorAll('[data-modal]');
 
-    function toggleModal() {
-        modal.classList.toggle('hide');
+    function openModal() {
+        modal.classList.add('show');
+        modal.classList.remove('hide');
+        // TODO: uncomment for switch Timer
+        // clearTimeout(modalTimerId);
     }
 
-    // open modal
-    document.addEventListener('click', (evt) => {
-        const target = evt.target;
+    function closeModal() {
+        modal.classList.add('hide');
+        modal.classList.remove('show');
+    }
 
-        if (target && target.matches('[data-modal]')) {
-            toggleModal();
-            // TODO: uncomment for switch Timer
-            // clearTimeout(modalTimerId);
-            window.removeEventListener('scroll', onScrollModalOpen);
-        }
+    // add handlers to open modal
+    modalTrigger.forEach((btn) => {
+        btn.addEventListener('click', openModal);
     });
 
     // close modal
@@ -133,14 +135,14 @@ window.addEventListener('DOMContentLoaded', () => {
         const target = evt.target;
 
         if (target && (target.matches('[data-modal-close]') || target === modal)) {
-            toggleModal();
+            closeModal();
         }
     });
 
     // close modal by 'Escape'
     document.addEventListener('keydown', (evt) => {
-        if (evt.code === 'Escape' && !modal.classList.contains('hide')) {
-            toggleModal();
+        if (evt.code === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
         }
     });
 
@@ -154,7 +156,7 @@ window.addEventListener('DOMContentLoaded', () => {
             window.pageYOffset + document.documentElement.clientHeight >=
             document.documentElement.scrollHeight
         ) {
-            toggleModal();
+            openModal();
             window.removeEventListener('scroll', onScrollModalOpen);
         }
     }
@@ -231,31 +233,72 @@ window.addEventListener('DOMContentLoaded', () => {
     // =========================================================
 
     const forms = document.querySelectorAll('form');
+    const message = {
+        loading: './icons/spinner.svg',
+        success: 'Thanks for your order!',
+        error: '! Something WRONG !'
+    };
 
     forms.forEach((item) => {
-        item.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-            postForm(item);
-        });
+        postForm(item);
     });
 
     function postForm(form) {
-        const xhr = new XMLHttpRequest();
-        const url = 'https://echo.htmlacademy.ru';
-        const dataForm = new FormData(form);
+        form.addEventListener('submit', (evt) => {
+            evt.preventDefault();
 
-        xhr.open('POST', url);
+            let statusMessage = document.createElement('img');
+            statusMessage.src = message.loading;
+            statusMessage.style.cssText = `
+                display: block;
+                margin: 10px auto;
+            `;
+            form.insertAdjacentElement('afterend', statusMessage);
 
-        xhr.addEventListener('load', () => {
-            if (xhr.status == 200) {
-                console.log(xhr.response);
-                form.reset();
-            } else {
-                console.log(`Error ${xhr.status}`);
-            }
+            const xhr = new XMLHttpRequest();
+            const url = 'https://echo.htmlacademy.ru';
+            const dataForm = new FormData(form);
+
+            xhr.open('POST', url);
+
+            xhr.addEventListener('load', () => {
+                if (xhr.status == 200) {
+                    console.log(xhr.response);
+                    showFormMessage(message.success);
+                    statusMessage.remove();
+                    form.reset();
+                } else {
+                    console.log(`Error ${xhr.status}`);
+                    showFormMessage(message.error);
+                }
+            });
+            xhr.onerror = () => console.log('ERROR UNKNOWN');
+
+            xhr.send(dataForm);
         });
-        xhr.onerror = () => console.log('ERROR UNKNOWN');
+    }
 
-        xhr.send(dataForm);
+    function showFormMessage(message) {
+        const modalContent = document.querySelector('.modal__dialog');
+
+        modalContent.classList.add('hide');
+        openModal();
+
+        const newModalContent = document.createElement('div');
+        newModalContent.classList.add('modal__dialog');
+        newModalContent.innerHTML = `
+            <div class="modal__content">
+                <div data-modal-close class="modal__close">&times;</div>
+                <div class="modal__title">${message}</div>
+            </div>
+        `;
+        document.querySelector('.modal').append(newModalContent);
+
+        setTimeout(() => {
+            newModalContent.remove();
+            modalContent.classList.add('show');
+            modalContent.classList.remove('hide');
+            closeModal();
+        }, 3000);
     }
 });
