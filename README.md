@@ -8,3 +8,4 @@
 - Menu cards render (via JS classes)
 - Posting form data to server (XHR)
 - User notifications depending on Form status
+- Rewrite XHR to Fetch
