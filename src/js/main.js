@@ -255,26 +255,26 @@ window.addEventListener('DOMContentLoaded', () => {
             `;
             form.insertAdjacentElement('afterend', statusMessage);
 
-            const xhr = new XMLHttpRequest();
             const url = 'https://echo.htmlacademy.ru';
             const dataForm = new FormData(form);
 
-            xhr.open('POST', url);
-
-            xhr.addEventListener('load', () => {
-                if (xhr.status == 200) {
-                    console.log(xhr.response);
+            fetch(url, {
+                method: 'POST',
+                body: dataForm
+            })
+                .then((response) => response.text())
+                .then((data) => {
+                    console.log(data);
                     showFormMessage(message.success);
                     statusMessage.remove();
-                    form.reset();
-                } else {
-                    console.log(`Error ${xhr.status}`);
+                })
+                .catch((err) => {
+                    console.error('ERROR', err);
                     showFormMessage(message.error);
-                }
-            });
-            xhr.onerror = () => console.log('ERROR UNKNOWN');
-
-            xhr.send(dataForm);
+                })
+                .finally(() => {
+                    form.reset();
+                });
         });
     }
 
