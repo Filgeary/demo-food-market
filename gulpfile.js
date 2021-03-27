@@ -4,9 +4,10 @@ const sass = require('gulp-sass');
 const autoprefixer = require('autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const postcss = require('gulp-postcss');
+const del = require('del');
 const browsersync = require('browser-sync');
 
-const dist = './dist';
+const dist = './public';
 
 gulp.task('copy-html', () => {
     return gulp.src('./src/index.html').pipe(gulp.dest(dist)).pipe(browsersync.stream());
@@ -69,9 +70,13 @@ gulp.task('copy-assets', () => {
         .pipe(browsersync.stream());
 });
 
+gulp.task('delete-public', () => {
+    return del('public');
+});
+
 gulp.task('watch', () => {
     browsersync.init({
-        server: './dist/',
+        server: './public/',
         port: 4000,
         notify: true
     });
@@ -83,7 +88,13 @@ gulp.task('watch', () => {
     gulp.watch('./src/js/**/*.js', gulp.parallel('build-js'));
 });
 
-gulp.task('build', gulp.parallel('copy-html', 'copy-assets', 'build-sass', 'build-js'));
+gulp.task(
+    'build',
+    gulp.series(
+        'delete-public',
+        gulp.parallel('copy-html', 'copy-assets', 'build-sass', 'build-js')
+    )
+);
 
 gulp.task('prod', () => {
     gulp.src('./src/index.html').pipe(gulp.dest(dist));
