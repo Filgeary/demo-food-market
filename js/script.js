@@ -247,7 +247,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const forms = document.querySelectorAll('form');
     const message = {
-        loading: './icons/spinner.svg',
+        loading: './img/form/spinner.svg',
         success: 'Thanks for your order!',
         error: '! Something WRONG !'
     };
