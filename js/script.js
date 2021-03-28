@@ -134,7 +134,10 @@ window.addEventListener('DOMContentLoaded', () => {
     modal.addEventListener('click', (evt) => {
         const target = evt.target;
 
-        if (target && (target.matches('[data-modal-close]') || target === modal)) {
+        if (
+            target &&
+            (target.matches('[data-modal-close]') || target === modal)
+        ) {
             closeModal();
         }
     });
@@ -167,7 +170,15 @@ window.addEventListener('DOMContentLoaded', () => {
     // =========================================================
 
     class MenuCard {
-        constructor(src, alt, title, description, price, parentSelector, ...classes) {
+        constructor(
+            src,
+            alt,
+            title,
+            description,
+            price,
+            parentSelector,
+            ...classes
+        ) {
             this.src = src;
             this.alt = alt;
             this.title = title;
@@ -184,7 +195,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 this.classes.push('menu__item');
             }
 
-            this.classes.forEach((className) => element.classList.add(className));
+            this.classes.forEach((className) =>
+                element.classList.add(className)
+            );
 
             element.innerHTML = `
                 <img src=${this.src} alt=${this.alt} />
@@ -234,7 +247,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const forms = document.querySelectorAll('form');
     const message = {
-        loading: './icons/spinner.svg',
+        loading: './img/form/spinner.svg',
         success: 'Thanks for your order!',
         error: '! Something WRONG !'
     };
@@ -301,4 +314,17 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 3000);
     }
+
+    // fetch local db.json via json-server
+    // =========================================================
+
+    const requestUrlLocalDB = 'http://localhost:3000/menu';
+    const postUrlLocalDB = 'http://localhost:3000/requests';
+
+    function requestLocalDB(url) {
+        fetch(url)
+            .then((data) => data.json())
+            .then((json) => console.log(json));
+    }
+    // requestLocalDB(requestUrlLocalDB);
 });
