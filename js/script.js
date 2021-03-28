@@ -314,4 +314,17 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 3000);
     }
+
+    // fetch local db.json via json-server
+    // =========================================================
+
+    const requestUrlLocalDB = 'http://localhost:3000/menu';
+    const postUrlLocalDB = 'http://localhost:3000/requests';
+
+    function requestLocalDB(url) {
+        fetch(url)
+            .then((data) => data.json())
+            .then((json) => console.log(json));
+    }
+    // requestLocalDB(requestUrlLocalDB);
 });

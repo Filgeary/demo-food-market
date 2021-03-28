@@ -1,0 +1,14 @@
+{
+  "name": "s03-38_food-market",
+  "version": "1.0.0",
+  "description": "training-project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^0.16.3"
+  }
+}
