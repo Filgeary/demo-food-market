@@ -215,32 +215,37 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    new MenuCard(
-        'img/tabs/vegy.jpg',
-        'vegy',
-        'Меню "Фитнес"',
-        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-        319,
-        '.menu .container'
-    ).render();
+    // fetch local db.json via json-server
+    const urlGetLocalDB = 'http://localhost:3000/menu';
 
-    new MenuCard(
-        'img/tabs/post.jpg',
-        'post',
-        'Меню "Постное"',
-        'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
-        414,
-        '.menu .container'
-    ).render();
+    // getData
+    const getData = async (url) => {
+        const response = await fetch(url);
 
-    new MenuCard(
-        'img/tabs/elite.jpg',
-        'elite',
-        'Меню “Премиум”',
-        'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
-        521,
-        '.menu .container'
-    ).render();
+        if (!response.ok) {
+            throw new Error(
+                `Failed to fetch ${url}, status: ${response.status}`
+            );
+        }
+
+        return await response.json();
+    };
+
+    getData(urlGetLocalDB).then((data) => {
+        data.forEach(({ img, altimg, title, descr, price }) => {
+            new MenuCard(
+                img,
+                altimg,
+                title,
+                descr,
+                price,
+                '.menu .container'
+            ).render();
+        });
+    });
+
+    // fetch local db.json via json-server
+    const urlPostLocalDB = 'http://localhost:3000/requests';
 
     // post FormData
     // =========================================================
@@ -253,10 +258,23 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     forms.forEach((item) => {
-        postForm(item);
+        bindPostData(item);
     });
 
-    function postForm(form) {
+    // postData
+    const postData = async (url, data) => {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: data
+        });
+
+        return await response.json();
+    };
+
+    function bindPostData(form) {
         form.addEventListener('submit', (evt) => {
             evt.preventDefault();
 
@@ -268,21 +286,17 @@ window.addEventListener('DOMContentLoaded', () => {
             `;
             form.insertAdjacentElement('afterend', statusMessage);
 
-            const url = 'https://echo.htmlacademy.ru';
             const dataForm = new FormData(form);
+            const json = JSON.stringify(Object.fromEntries(dataForm.entries()));
 
-            fetch(url, {
-                method: 'POST',
-                body: dataForm
-            })
-                .then((response) => response.text())
+            postData(urlPostLocalDB, json)
                 .then((data) => {
                     console.log(data);
                     showFormMessage(message.success);
                     statusMessage.remove();
                 })
                 .catch((err) => {
-                    console.error('ERROR', err);
+                    console.error(err);
                     showFormMessage(message.error);
                 })
                 .finally(() => {
@@ -314,17 +328,4 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 3000);
     }
-
-    // fetch local db.json via json-server
-    // =========================================================
-
-    const requestUrlLocalDB = 'http://localhost:3000/menu';
-    const postUrlLocalDB = 'http://localhost:3000/requests';
-
-    function requestLocalDB(url) {
-        fetch(url)
-            .then((data) => data.json())
-            .then((json) => console.log(json));
-    }
-    // requestLocalDB(requestUrlLocalDB);
 });
