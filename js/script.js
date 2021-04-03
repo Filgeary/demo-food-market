@@ -41,42 +41,97 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // slider
+    // slider #1
+    // =========================================================
+
+    // const slider = document.querySelector('.offer__slider');
+
+    // const slides = slider.querySelectorAll('.offer__slide');
+    // const currentSlide = slider.querySelector('#current');
+    // const totalSlides = slider.querySelector('#total');
+    // const sliderPrev = slider.querySelector('.offer__slider-prev');
+    // const sliderNext = slider.querySelector('.offer__slider-next');
+
+    // let sliderIndex = 1;
+
+    // showSlides(sliderIndex);
+    // totalSlides.textContent = getZero(slides.length);
+
+    // function showSlides(n) {
+    //     if (n > slides.length) {
+    //         sliderIndex = 1;
+    //     }
+
+    //     if (n < 1) {
+    //         sliderIndex = slides.length;
+    //     }
+
+    //     slides.forEach((item) => item.classList.add('hide'));
+    //     slides[sliderIndex - 1].classList.replace('hide', 'show');
+    //     currentSlide.textContent = getZero(sliderIndex);
+    // }
+
+    // function calculateSlide(n) {
+    //     showSlides((sliderIndex += n));
+    // }
+
+    // sliderPrev.addEventListener('click', () => calculateSlide(-1));
+    // sliderNext.addEventListener('click', () => calculateSlide(+1));
+
+    // slider #2
     // =========================================================
 
     const slider = document.querySelector('.offer__slider');
 
     const slides = slider.querySelectorAll('.offer__slide');
+    const sliderWrapper = slider.querySelector('.offer__slider-wrapper');
+    const widthSliderWrapper = window.getComputedStyle(sliderWrapper).width;
+    const sliderInner = slider.querySelector('.offer__slider-inner');
+
     const currentSlide = slider.querySelector('#current');
     const totalSlides = slider.querySelector('#total');
     const sliderPrev = slider.querySelector('.offer__slider-prev');
     const sliderNext = slider.querySelector('.offer__slider-next');
 
-    let sliderIndex = 1;
+    let slideIndex = 1;
+    let offset = 0;
 
-    showSlides(sliderIndex);
+    currentSlide.textContent = getZero(slideIndex);
     totalSlides.textContent = getZero(slides.length);
 
-    function showSlides(n) {
-        if (n > slides.length) {
-            sliderIndex = 1;
+    sliderInner.style.width = 100 * slides.length + '%';
+    sliderInner.style.display = 'flex';
+    sliderWrapper.style.overflow = 'hidden';
+
+    slides.forEach((slide) => (slide.style.width = widthSliderWrapper));
+
+    sliderNext.addEventListener('click', () => {
+        if (offset == parseFloat(widthSliderWrapper) * (slides.length - 1)) {
+            offset = 0;
+            sliderInner.style.transition = '0.1s all';
+        } else {
+            offset += parseFloat(widthSliderWrapper);
+            sliderInner.style.transition = '0.5s all';
         }
 
-        if (n < 1) {
-            sliderIndex = slides.length;
+        sliderInner.style.transform = `translateX(-${offset}px)`;
+        slideIndex = slideIndex == slides.length ? 1 : ++slideIndex;
+        currentSlide.textContent = getZero(slideIndex);
+    });
+
+    sliderPrev.addEventListener('click', () => {
+        if (offset == 0) {
+            offset = parseFloat(widthSliderWrapper) * (slides.length - 1);
+            sliderInner.style.transition = '0.1s all';
+        } else {
+            offset -= parseFloat(widthSliderWrapper);
+            sliderInner.style.transition = '0.5s all';
         }
 
-        slides.forEach((item) => item.classList.add('hide'));
-        slides[sliderIndex - 1].classList.replace('hide', 'show');
-        currentSlide.textContent = getZero(sliderIndex);
-    }
-
-    function calculateSlide(n) {
-        showSlides((sliderIndex += n));
-    }
-
-    sliderPrev.addEventListener('click', () => calculateSlide(-1));
-    sliderNext.addEventListener('click', () => calculateSlide(+1));
+        sliderInner.style.transform = `translateX(-${offset}px)`;
+        slideIndex = slideIndex == 1 ? slides.length : --slideIndex;
+        currentSlide.textContent = getZero(slideIndex);
+    });
 
     // timer
     // =========================================================
