@@ -1,8 +1,9 @@
-# practice-training-project
+# JS-training-project
 
 > my code is only JS
 
 - Tabs
+- Slider
 - Timer
 - Modal (open modal by timeout & by scroll to the bottom)
 - Menu cards render (via JS classes)
