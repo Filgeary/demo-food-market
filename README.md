@@ -1,6 +1,6 @@
 # JS-training-project
 
-> my code is only JS
+> add interactive elements
 
 - Tabs
 - Slider (with navigation)
