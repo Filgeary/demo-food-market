@@ -3,7 +3,7 @@
 > my code is only JS
 
 - Tabs
-- Slider
+- Slider (with navigation)
 - Timer
 - Modal (open modal by timeout & by scroll to the bottom)
 - Menu cards render (via JS classes)
