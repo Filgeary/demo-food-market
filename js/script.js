@@ -101,6 +101,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     sliderInner.style.width = 100 * slides.length + '%';
     sliderInner.style.display = 'flex';
+    sliderInner.style.transition = '0.5s all';
     sliderWrapper.style.overflow = 'hidden';
 
     slides.forEach((slide) => (slide.style.width = widthSliderWrapper));
@@ -117,6 +118,7 @@ window.addEventListener('DOMContentLoaded', () => {
         sliderInner.style.transform = `translateX(-${offset}px)`;
         slideIndex = slideIndex == slides.length ? 1 : ++slideIndex;
         currentSlide.textContent = getZero(slideIndex);
+        setActiveDot();
     });
 
     sliderPrev.addEventListener('click', () => {
@@ -131,6 +133,43 @@ window.addEventListener('DOMContentLoaded', () => {
         sliderInner.style.transform = `translateX(-${offset}px)`;
         slideIndex = slideIndex == 1 ? slides.length : --slideIndex;
         currentSlide.textContent = getZero(slideIndex);
+        setActiveDot();
+    });
+
+    // carousel-dots
+    const carouselDotsWrapper = document.createElement('ol');
+    const carouselDots = [];
+    carouselDotsWrapper.classList.add('carousel-indicators');
+
+    slider.style.position = 'relative';
+    slider.append(carouselDotsWrapper);
+
+    for (let i = 0; i < slides.length; i++) {
+        const dotCarousel = document.createElement('li');
+        dotCarousel.setAttribute('data-slide-to', i + 1);
+        dotCarousel.classList.add('dot');
+        dotCarousel.style.opacity = i == 0 ? 1 : 0.5;
+
+        carouselDotsWrapper.append(dotCarousel);
+        carouselDots.push(dotCarousel);
+    }
+
+    function setActiveDot() {
+        carouselDots.forEach((item) => (item.style.opacity = '0.5'));
+        carouselDots[slideIndex - 1].style.opacity = '1';
+    }
+
+    carouselDotsWrapper.addEventListener('click', (evt) => {
+        const target = evt.target;
+
+        if (target && target.matches('[data-slide-to]')) {
+            slideIndex = target.getAttribute('data-slide-to');
+            offset = parseFloat(widthSliderWrapper) * (slideIndex - 1);
+
+            sliderInner.style.transform = `translateX(-${offset}px)`;
+            currentSlide.textContent = getZero(slideIndex);
+            setActiveDot();
+        }
     });
 
     // timer
