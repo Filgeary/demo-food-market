@@ -12,3 +12,4 @@
 - User notifications depending on Form status
 - Rewrite XHR to Fetch (Promise, async/await)
 - GET Menu cards & POST Form via Fake REST API (http-server, json-server)
+- localStorage & RegExp (a little bit)
