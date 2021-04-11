@@ -4,6 +4,7 @@
 
 - Tabs
 - Slider (with navigation)
+- Calculator
 - Timer
 - Modal (open modal by timeout & by scroll to the bottom)
 - Menu cards render (via JS classes)
