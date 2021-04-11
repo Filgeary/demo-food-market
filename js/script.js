@@ -459,4 +459,76 @@ window.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }, 3000);
     }
+
+    // Calculator
+    // =========================================================
+
+    const calculator = document.querySelector('.calculating');
+    const genderBoxes = calculator.querySelectorAll('[data-gender]');
+    const inputBox = calculator.querySelector('.calculating__choose_medium');
+    const ratioBoxes = calculator.querySelectorAll('[data-ratio]');
+    const result = calculator.querySelector('.calculating__result > span');
+    const activeClass = 'calculating__choose-item_active';
+
+    let sex = 'female';
+    let height = 0;
+    let weight = 0;
+    let age = 0;
+    let ratio = 1.375;
+
+    function calcTotal() {
+        if (!sex || !height || !weight || !age || !ratio) {
+            result.textContent = '____';
+            return;
+        }
+
+        if (sex === 'female') {
+            result.textContent = Math.round(
+                (447.6 + 9.2 * weight + 3.1 * height - 4.3 * age) * ratio
+            );
+        } else {
+            result.textContent = Math.round(
+                (88.36 + 13.4 * weight + 4.8 * height - 5.7 * age) * ratio
+            );
+        }
+    }
+    calcTotal();
+
+    calculator.addEventListener('click', (evt) => {
+        const target = evt.target;
+
+        if (target && target.matches('[data-gender]')) {
+            sex = target.dataset.gender;
+            genderBoxes.forEach((item) => item.classList.remove(activeClass));
+            target.classList.add(activeClass);
+            calcTotal();
+        }
+
+        if (target && target.matches('[data-ratio]')) {
+            ratio = target.dataset.ratio;
+            ratioBoxes.forEach((item) => item.classList.remove(activeClass));
+            target.classList.add(activeClass);
+            calcTotal();
+        }
+    });
+
+    inputBox.addEventListener('input', (evt) => {
+        const target = evt.target;
+
+        if (target && target.matches('[data-input]')) {
+            switch (target.dataset.input) {
+                case 'height':
+                    height = +target.value;
+                    break;
+
+                case 'weight':
+                    weight = +target.value;
+                    break;
+
+                case 'age':
+                    age = +target.value;
+                    break;
+            }
+        }
+    });
 });
