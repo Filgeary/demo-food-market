@@ -470,11 +470,44 @@ window.addEventListener('DOMContentLoaded', () => {
     const result = calculator.querySelector('.calculating__result > span');
     const activeClass = 'calculating__choose-item_active';
 
-    let sex = 'female';
+    let sex = '';
     let height = 0;
     let weight = 0;
     let age = 0;
-    let ratio = 1.375;
+    let ratio = 0;
+
+    if (localStorage.getItem('sex')) {
+        sex = localStorage.getItem('sex');
+    } else {
+        sex = 'male';
+        localStorage.setItem('sex', sex);
+    }
+
+    if (localStorage.getItem('ratio')) {
+        ratio = localStorage.getItem('ratio');
+    } else {
+        ratio = 1.55;
+        localStorage.setItem('ratio', ratio);
+    }
+
+    function initLocalSettings() {
+        genderBoxes.forEach((item) => {
+            item.classList.remove(activeClass);
+
+            if (item.dataset.gender === localStorage.getItem('sex')) {
+                item.classList.add(activeClass);
+            }
+        });
+
+        ratioBoxes.forEach((item) => {
+            item.classList.remove(activeClass);
+
+            if (item.dataset.ratio === localStorage.getItem('ratio')) {
+                item.classList.add(activeClass);
+            }
+        });
+    }
+    initLocalSettings();
 
     function calcTotal() {
         if (!sex || !height || !weight || !age || !ratio) {
@@ -499,6 +532,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (target && target.matches('[data-gender]')) {
             sex = target.dataset.gender;
+            localStorage.setItem('sex', sex);
             genderBoxes.forEach((item) => item.classList.remove(activeClass));
             target.classList.add(activeClass);
             calcTotal();
@@ -506,6 +540,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (target && target.matches('[data-ratio]')) {
             ratio = target.dataset.ratio;
+            localStorage.setItem('ratio', ratio);
             ratioBoxes.forEach((item) => item.classList.remove(activeClass));
             target.classList.add(activeClass);
             calcTotal();
@@ -516,6 +551,12 @@ window.addEventListener('DOMContentLoaded', () => {
         const target = evt.target;
 
         if (target && target.matches('[data-input]')) {
+            if (target.value.match(/[^\d.]/g)) {
+                target.style.border = '1px solid tomato';
+            } else {
+                target.style.border = 'none';
+            }
+
             switch (target.dataset.input) {
                 case 'height':
                     height = +target.value;
@@ -530,5 +571,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     break;
             }
         }
+        calcTotal();
     });
 });
