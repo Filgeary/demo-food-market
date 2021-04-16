@@ -1,14 +1,16 @@
 {
   "name": "s03-38_food-market",
   "version": "1.0.0",
-  "description": "training-project",
-  "main": "index.js",
+  "description": "",
+  "private": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "json-server": "^0.16.3"
+    "json-server": "^0.16.3",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
   }
 }
