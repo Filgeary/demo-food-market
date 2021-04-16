@@ -5,13 +5,11 @@
 /.pnp
 .pnp.js
 
+# Map files
+*.map
+
 # testing
 /coverage
-
-# production
-/public
-/build
-/dist
 
 # misc
 .DS_Store
