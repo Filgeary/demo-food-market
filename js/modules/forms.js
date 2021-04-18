@@ -1,3 +1,5 @@
+import { openModal, closeModal } from '../utils/modalHelpers';
+
 function forms() {
     // fetch local db.json via json-server
     const urlPostLocalDB = 'http://localhost:3000/requests';

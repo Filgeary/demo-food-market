@@ -232,6 +232,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/modalHelpers */ "./js/utils/modalHelpers.js");
+
+
 function forms() {
     // fetch local db.json via json-server
     const urlPostLocalDB = 'http://localhost:3000/requests';
@@ -296,7 +299,7 @@ function forms() {
         const modalContent = document.querySelector('.modal__dialog');
 
         modalContent.classList.add('hide');
-        openModal();
+        (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal)();
 
         const newModalContent = document.createElement('div');
         newModalContent.classList.add('modal__dialog');
@@ -312,7 +315,7 @@ function forms() {
             newModalContent.remove();
             modalContent.classList.add('show');
             modalContent.classList.remove('hide');
-            closeModal();
+            (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.closeModal)();
         }, 3000);
     }
 }
@@ -332,43 +335,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/modalHelpers */ "./js/utils/modalHelpers.js");
+
+
 function modal() {
-    const modal = document.querySelector('.modal');
     const modalTrigger = document.querySelectorAll('[data-modal]');
-
-    function openModal() {
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-        // TODO: uncomment for switch Timer
-        // clearTimeout(modalTimerId);
-    }
-
-    function closeModal() {
-        modal.classList.add('hide');
-        modal.classList.remove('show');
-    }
 
     // add handlers to open modal
     modalTrigger.forEach((btn) => {
-        btn.addEventListener('click', openModal);
+        btn.addEventListener('click', _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal);
     });
 
     // close modal
-    modal.addEventListener('click', (evt) => {
+    _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.modalBox.addEventListener('click', (evt) => {
         const target = evt.target;
 
         if (
             target &&
-            (target.matches('[data-modal-close]') || target === modal)
+            (target.matches('[data-modal-close]') || target === _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.modalBox)
         ) {
-            closeModal();
+            (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.closeModal)();
         }
     });
 
     // close modal by 'Escape'
     document.addEventListener('keydown', (evt) => {
-        if (evt.code === 'Escape' && modal.classList.contains('show')) {
-            closeModal();
+        if (evt.code === 'Escape' && _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.modalBox.classList.contains('show')) {
+            (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.closeModal)();
         }
     });
 
@@ -382,7 +375,7 @@ function modal() {
             window.pageYOffset + document.documentElement.clientHeight >=
             document.documentElement.scrollHeight
         ) {
-            openModal();
+            (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal)();
             window.removeEventListener('scroll', onScrollModalOpen);
         }
     }
@@ -694,6 +687,35 @@ function getZero(number) {
         return '0' + number;
     }
     return number;
+}
+
+
+/***/ }),
+
+/***/ "./js/utils/modalHelpers.js":
+/*!**********************************!*\
+  !*** ./js/utils/modalHelpers.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "modalBox": () => (/* binding */ modalBox),
+/* harmony export */   "openModal": () => (/* binding */ openModal),
+/* harmony export */   "closeModal": () => (/* binding */ closeModal)
+/* harmony export */ });
+const modalBox = document.querySelector('.modal');
+
+function openModal() {
+    modalBox.classList.add('show');
+    modalBox.classList.remove('hide');
+    // TODO: uncomment for switch Timer
+    // clearTimeout(modalTimerId);
+}
+
+function closeModal() {
+    modalBox.classList.add('hide');
+    modalBox.classList.remove('show');
 }
 
 

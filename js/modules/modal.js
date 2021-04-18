@@ -1,18 +1,7 @@
+import { modalBox, openModal, closeModal } from '../utils/modalHelpers';
+
 function modal() {
-    const modal = document.querySelector('.modal');
     const modalTrigger = document.querySelectorAll('[data-modal]');
-
-    function openModal() {
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-        // TODO: uncomment for switch Timer
-        // clearTimeout(modalTimerId);
-    }
-
-    function closeModal() {
-        modal.classList.add('hide');
-        modal.classList.remove('show');
-    }
 
     // add handlers to open modal
     modalTrigger.forEach((btn) => {
@@ -20,12 +9,12 @@ function modal() {
     });
 
     // close modal
-    modal.addEventListener('click', (evt) => {
+    modalBox.addEventListener('click', (evt) => {
         const target = evt.target;
 
         if (
             target &&
-            (target.matches('[data-modal-close]') || target === modal)
+            (target.matches('[data-modal-close]') || target === modalBox)
         ) {
             closeModal();
         }
@@ -33,7 +22,7 @@ function modal() {
 
     // close modal by 'Escape'
     document.addEventListener('keydown', (evt) => {
-        if (evt.code === 'Escape' && modal.classList.contains('show')) {
+        if (evt.code === 'Escape' && modalBox.classList.contains('show')) {
             closeModal();
         }
     });
