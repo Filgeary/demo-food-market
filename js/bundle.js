@@ -559,9 +559,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 function tabs() {
-    const tabs = document.querySelectorAll('.tabcontent');
-    const tabItems = document.querySelectorAll('.tabheader__item');
-    const tabHeader = document.querySelector('.tabheader__items');
+    const tabContainer = document.querySelector('.tabcontainer');
+    const tabs = tabContainer.querySelectorAll('.tabcontent');
+    const tabItems = tabContainer.querySelectorAll('.tabheader__item');
+    const tabHeader = tabContainer.querySelector('.tabheader__items');
 
     const hideTabs = () => {
         tabs.forEach((item) => {
