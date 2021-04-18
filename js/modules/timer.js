@@ -1,13 +1,6 @@
-function timer() {
-    // utils
-    function getZero(number) {
-        if (number >= 0 && number < 10) {
-            return '0' + number;
-        }
-        return number;
-    }
+import { getZero } from '../utils/getZero';
 
-    // timer
+function timer() {
     const deadline = '2022-01-01';
 
     function getTimeRemaining(endtime) {

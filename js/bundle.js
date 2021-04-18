@@ -405,6 +405,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _utils_getZero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/getZero */ "./js/utils/getZero.js");
+
+
 function slider() {
     // slider #1
     // =========================================================
@@ -446,14 +449,6 @@ function slider() {
     // slider #2
     // =========================================================
 
-    // utils
-    function getZero(number) {
-        if (number >= 0 && number < 10) {
-            return '0' + number;
-        }
-        return number;
-    }
-
     const slider = document.querySelector('.offer__slider');
 
     const slides = slider.querySelectorAll('.offer__slide');
@@ -469,8 +464,8 @@ function slider() {
     let slideIndex = 1;
     let offset = 0;
 
-    currentSlide.textContent = getZero(slideIndex);
-    totalSlides.textContent = getZero(slides.length);
+    currentSlide.textContent = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(slideIndex);
+    totalSlides.textContent = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(slides.length);
 
     sliderInner.style.width = 100 * slides.length + '%';
     sliderInner.style.display = 'flex';
@@ -490,7 +485,7 @@ function slider() {
 
         sliderInner.style.transform = `translateX(-${offset}px)`;
         slideIndex = slideIndex == slides.length ? 1 : ++slideIndex;
-        currentSlide.textContent = getZero(slideIndex);
+        currentSlide.textContent = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(slideIndex);
         setActiveDot();
     });
 
@@ -505,7 +500,7 @@ function slider() {
 
         sliderInner.style.transform = `translateX(-${offset}px)`;
         slideIndex = slideIndex == 1 ? slides.length : --slideIndex;
-        currentSlide.textContent = getZero(slideIndex);
+        currentSlide.textContent = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(slideIndex);
         setActiveDot();
     });
 
@@ -542,7 +537,7 @@ function slider() {
             offset = parseFloat(widthSliderWrapper) * (slideIndex - 1);
 
             sliderInner.style.transform = `translateX(-${offset}px)`;
-            currentSlide.textContent = getZero(slideIndex);
+            currentSlide.textContent = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(slideIndex);
             setActiveDot();
         }
     });
@@ -617,16 +612,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function timer() {
-    // utils
-    function getZero(number) {
-        if (number >= 0 && number < 10) {
-            return '0' + number;
-        }
-        return number;
-    }
+/* harmony import */ var _utils_getZero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/getZero */ "./js/utils/getZero.js");
 
-    // timer
+
+function timer() {
     const deadline = '2022-01-01';
 
     function getTimeRemaining(endtime) {
@@ -670,10 +659,10 @@ function timer() {
         function updateClock() {
             const total = getTimeRemaining(endtime);
 
-            days.innerHTML = getZero(total.days);
-            hours.innerHTML = getZero(total.hours);
-            minutes.innerHTML = getZero(total.minutes);
-            seconds.innerHTML = getZero(total.seconds);
+            days.innerHTML = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(total.days);
+            hours.innerHTML = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(total.hours);
+            minutes.innerHTML = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(total.minutes);
+            seconds.innerHTML = (0,_utils_getZero__WEBPACK_IMPORTED_MODULE_0__.getZero)(total.seconds);
 
             if (total.total <= 0) {
                 clearInterval(timeInterval);
@@ -685,6 +674,26 @@ function timer() {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);
+
+
+/***/ }),
+
+/***/ "./js/utils/getZero.js":
+/*!*****************************!*\
+  !*** ./js/utils/getZero.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getZero": () => (/* binding */ getZero)
+/* harmony export */ });
+function getZero(number) {
+    if (number >= 0 && number < 10) {
+        return '0' + number;
+    }
+    return number;
+}
 
 
 /***/ })

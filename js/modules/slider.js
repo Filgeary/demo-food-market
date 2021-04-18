@@ -1,3 +1,5 @@
+import { getZero } from '../utils/getZero';
+
 function slider() {
     // slider #1
     // =========================================================
@@ -38,14 +40,6 @@ function slider() {
 
     // slider #2
     // =========================================================
-
-    // utils
-    function getZero(number) {
-        if (number >= 0 && number < 10) {
-            return '0' + number;
-        }
-        return number;
-    }
 
     const slider = document.querySelector('.offer__slider');
 
