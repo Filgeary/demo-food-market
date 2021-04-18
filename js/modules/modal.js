@@ -1,7 +1,4 @@
 function modal() {
-    // modal
-    // =========================================================
-
     const modal = document.querySelector('.modal');
     const modalTrigger = document.querySelectorAll('[data-modal]');
 
@@ -59,4 +56,4 @@ function modal() {
     window.addEventListener('scroll', onScrollModalOpen);
 }
 
-module.exports = modal;
+export default modal;

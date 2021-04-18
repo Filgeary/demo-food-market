@@ -1,7 +1,4 @@
 function calculator() {
-    // Calculator
-    // =========================================================
-
     const calculator = document.querySelector('.calculating');
     const genderBoxes = calculator.querySelectorAll('[data-gender]');
     const inputBox = calculator.querySelector('.calculating__choose_medium');
@@ -114,4 +111,4 @@ function calculator() {
     });
 }
 
-module.exports = calculator;
+export default calculator;

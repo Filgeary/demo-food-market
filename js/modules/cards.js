@@ -1,7 +1,4 @@
 function cards() {
-    // menu cards render
-    // =========================================================
-
     class MenuCard {
         constructor(
             src,
@@ -78,4 +75,4 @@ function cards() {
     });
 }
 
-module.exports = cards;
+export default cards;

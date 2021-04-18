@@ -1,7 +1,4 @@
 function tabs() {
-    // tabs
-    // =========================================================
-
     const tabs = document.querySelectorAll('.tabcontent');
     const tabItems = document.querySelectorAll('.tabheader__item');
     const tabHeader = document.querySelector('.tabheader__items');
@@ -40,4 +37,4 @@ function tabs() {
     });
 }
 
-module.exports = tabs;
+export default tabs;

@@ -2,9 +2,7 @@ function forms() {
     // fetch local db.json via json-server
     const urlPostLocalDB = 'http://localhost:3000/requests';
 
-    // post FormData
-    // =========================================================
-
+    // forms
     const forms = document.querySelectorAll('form');
     const message = {
         loading: './img/form/spinner.svg',
@@ -85,4 +83,4 @@ function forms() {
     }
 }
 
-module.exports = forms;
+export default forms;
