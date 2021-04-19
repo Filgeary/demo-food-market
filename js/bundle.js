@@ -365,10 +365,6 @@ function modal() {
         }
     });
 
-    // open modal by timeout
-    // TODO: uncomment for switch Timer
-    // const modalTimerId = setTimeout(toggleModal, 30000);
-
     // open modal by scroll to the end of page
     function onScrollModalOpen() {
         if (
@@ -706,11 +702,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const modalBox = document.querySelector('.modal');
 
-function openModal() {
+function openModal(modalTimerId) {
     modalBox.classList.add('show');
     modalBox.classList.remove('hide');
-    // TODO: uncomment for switch Timer
-    // clearTimeout(modalTimerId);
+
+    if (modalTimerId) {
+        clearTimeout(modalTimerId);
+    }
 }
 
 function closeModal() {
@@ -784,13 +782,17 @@ var __webpack_exports__ = {};
   !*** ./js/script.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/calculator */ "./js/modules/calculator.js");
-/* harmony import */ var _modules_cards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/cards */ "./js/modules/cards.js");
-/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js");
-/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/modal */ "./js/modules/modal.js");
-/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
-/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/tabs */ "./js/modules/tabs.js");
-/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/timer */ "./js/modules/timer.js");
+/* harmony import */ var _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/modalHelpers */ "./js/utils/modalHelpers.js");
+/* harmony import */ var _modules_calculator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/calculator */ "./js/modules/calculator.js");
+/* harmony import */ var _modules_cards__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/cards */ "./js/modules/cards.js");
+/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./js/modules/forms.js");
+/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/modal */ "./js/modules/modal.js");
+/* harmony import */ var _modules_slider__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/slider */ "./js/modules/slider.js");
+/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/tabs */ "./js/modules/tabs.js");
+/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/timer */ "./js/modules/timer.js");
+
+
+// utils
 
 
 // modules
@@ -803,14 +805,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.addEventListener('DOMContentLoaded', () => {
+    // open modal by timeout
+    const modalTimerId = setTimeout(() => {
+        (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal)(modalTimerId);
+    }, 30000);
+
     // modules
-    (0,_modules_calculator__WEBPACK_IMPORTED_MODULE_0__.default)();
-    (0,_modules_cards__WEBPACK_IMPORTED_MODULE_1__.default)();
-    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_2__.default)();
-    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_3__.default)();
-    (0,_modules_slider__WEBPACK_IMPORTED_MODULE_4__.default)();
-    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_5__.default)();
-    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_6__.default)();
+    (0,_modules_calculator__WEBPACK_IMPORTED_MODULE_1__.default)();
+    (0,_modules_cards__WEBPACK_IMPORTED_MODULE_2__.default)();
+    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_3__.default)();
+    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_4__.default)();
+    (0,_modules_slider__WEBPACK_IMPORTED_MODULE_5__.default)();
+    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_6__.default)();
+    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__.default)();
 });
 
 })();

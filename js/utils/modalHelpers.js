@@ -1,10 +1,12 @@
 export const modalBox = document.querySelector('.modal');
 
-export function openModal() {
+export function openModal(modalTimerId) {
     modalBox.classList.add('show');
     modalBox.classList.remove('hide');
-    // TODO: uncomment for switch Timer
-    // clearTimeout(modalTimerId);
+
+    if (modalTimerId) {
+        clearTimeout(modalTimerId);
+    }
 }
 
 export function closeModal() {

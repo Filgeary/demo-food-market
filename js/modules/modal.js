@@ -27,10 +27,6 @@ function modal() {
         }
     });
 
-    // open modal by timeout
-    // TODO: uncomment for switch Timer
-    // const modalTimerId = setTimeout(toggleModal, 30000);
-
     // open modal by scroll to the end of page
     function onScrollModalOpen() {
         if (
