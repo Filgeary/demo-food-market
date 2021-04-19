@@ -386,7 +386,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_getZero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/getZero */ "./js/utils/getZero.js");
 
 
-function slider() {
+function slider({
+    container,
+    slide,
+    wrapper,
+    inner,
+    currentCounter,
+    totalCounter,
+    prevArrow,
+    nextArrow
+}) {
     // slider #1
     // =========================================================
 
@@ -427,17 +436,17 @@ function slider() {
     // slider #2
     // =========================================================
 
-    const slider = document.querySelector('.offer__slider');
+    const slider = document.querySelector(container);
 
-    const slides = slider.querySelectorAll('.offer__slide');
-    const sliderWrapper = slider.querySelector('.offer__slider-wrapper');
+    const slides = slider.querySelectorAll(slide);
+    const sliderWrapper = slider.querySelector(wrapper);
     const widthSliderWrapper = window.getComputedStyle(sliderWrapper).width;
-    const sliderInner = slider.querySelector('.offer__slider-inner');
+    const sliderInner = slider.querySelector(inner);
 
-    const currentSlide = slider.querySelector('#current');
-    const totalSlides = slider.querySelector('#total');
-    const sliderPrev = slider.querySelector('.offer__slider-prev');
-    const sliderNext = slider.querySelector('.offer__slider-next');
+    const currentSlide = slider.querySelector(currentCounter);
+    const totalSlides = slider.querySelector(totalCounter);
+    const sliderPrev = slider.querySelector(prevArrow);
+    const sliderNext = slider.querySelector(nextArrow);
 
     let slideIndex = 1;
     let offset = 0;
@@ -829,7 +838,16 @@ window.addEventListener('DOMContentLoaded', () => {
     (0,_modules_cards__WEBPACK_IMPORTED_MODULE_2__.default)();
     (0,_modules_forms__WEBPACK_IMPORTED_MODULE_3__.default)('form', modalTimerId);
     (0,_modules_modal__WEBPACK_IMPORTED_MODULE_4__.default)('[data-modal]', '[data-modal-close]', modalTimerId);
-    (0,_modules_slider__WEBPACK_IMPORTED_MODULE_5__.default)();
+    (0,_modules_slider__WEBPACK_IMPORTED_MODULE_5__.default)({
+        container: '.offer__slider',
+        slide: '.offer__slide',
+        wrapper: '.offer__slider-wrapper',
+        inner: '.offer__slider-inner',
+        currentCounter: '#current',
+        totalCounter: '#total',
+        prevArrow: '.offer__slider-prev',
+        nextArrow: '.offer__slider-next'
+    });
     (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_6__.default)();
     (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__.default)();
 });

@@ -23,7 +23,16 @@ window.addEventListener('DOMContentLoaded', () => {
     cards();
     forms('form', modalTimerId);
     modal('[data-modal]', '[data-modal-close]', modalTimerId);
-    slider();
+    slider({
+        container: '.offer__slider',
+        slide: '.offer__slide',
+        wrapper: '.offer__slider-wrapper',
+        inner: '.offer__slider-inner',
+        currentCounter: '#current',
+        totalCounter: '#total',
+        prevArrow: '.offer__slider-prev',
+        nextArrow: '.offer__slider-next'
+    });
     tabs();
     timer();
 });
