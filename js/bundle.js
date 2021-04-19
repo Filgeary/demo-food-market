@@ -233,6 +233,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/modalHelpers */ "./js/utils/modalHelpers.js");
+/* harmony import */ var _utils_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/services */ "./js/utils/services.js");
+
 
 
 function forms(formsSelector, modalTimerId) {
@@ -251,19 +253,6 @@ function forms(formsSelector, modalTimerId) {
         bindPostData(item);
     });
 
-    // postData
-    const postData = async (url, data) => {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: data
-        });
-
-        return await response.json();
-    };
-
     function bindPostData(form) {
         form.addEventListener('submit', (evt) => {
             evt.preventDefault();
@@ -279,7 +268,7 @@ function forms(formsSelector, modalTimerId) {
             const dataForm = new FormData(form);
             const json = JSON.stringify(Object.fromEntries(dataForm.entries()));
 
-            postData(urlPostLocalDB, json)
+            (0,_utils_services__WEBPACK_IMPORTED_MODULE_1__.postData)(urlPostLocalDB, json)
                 .then((data) => {
                     console.log(data);
                     showFormMessage(message.success);
@@ -715,6 +704,31 @@ function closeModal() {
     modalBox.classList.add('hide');
     modalBox.classList.remove('show');
 }
+
+
+/***/ }),
+
+/***/ "./js/utils/services.js":
+/*!******************************!*\
+  !*** ./js/utils/services.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "postData": () => (/* binding */ postData)
+/* harmony export */ });
+const postData = async (url, data) => {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: data
+    });
+
+    return await response.json();
+};
 
 
 /***/ })
