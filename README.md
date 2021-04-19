@@ -8,9 +8,9 @@
 - Timer
 - Modal (open modal by timeout & by scroll to the bottom)
 - Menu cards render (via JS classes)
-- Posting form data to server (XHR)
+- Posting Form data to server (XHR)
 - User notifications depending on Form status
 - Rewrite XHR to Fetch (Promise, async/await)
 - GET Menu cards & POST Form via Fake REST API (http-server, json-server)
 - localStorage & RegExp (a little bit)
-- JavaScript Modules via webpack
+- JS ES6 Modules via webpack
