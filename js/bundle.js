@@ -235,12 +235,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/modalHelpers */ "./js/utils/modalHelpers.js");
 
 
-function forms() {
+function forms(formsSelector, modalTimerId) {
     // fetch local db.json via json-server
     const urlPostLocalDB = 'http://localhost:3000/requests';
 
     // forms
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll(formsSelector);
     const message = {
         loading: './img/form/spinner.svg',
         success: 'Thanks for your order!',
@@ -299,7 +299,7 @@ function forms() {
         const modalContent = document.querySelector('.modal__dialog');
 
         modalContent.classList.add('hide');
-        (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal)();
+        (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal)(modalTimerId);
 
         const newModalContent = document.createElement('div');
         newModalContent.classList.add('modal__dialog');
@@ -813,7 +813,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // modules
     (0,_modules_calculator__WEBPACK_IMPORTED_MODULE_1__.default)();
     (0,_modules_cards__WEBPACK_IMPORTED_MODULE_2__.default)();
-    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_3__.default)();
+    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_3__.default)('form', modalTimerId);
     (0,_modules_modal__WEBPACK_IMPORTED_MODULE_4__.default)();
     (0,_modules_slider__WEBPACK_IMPORTED_MODULE_5__.default)();
     (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_6__.default)();

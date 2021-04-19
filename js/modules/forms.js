@@ -1,11 +1,11 @@
 import { openModal, closeModal } from '../utils/modalHelpers';
 
-function forms() {
+function forms(formsSelector, modalTimerId) {
     // fetch local db.json via json-server
     const urlPostLocalDB = 'http://localhost:3000/requests';
 
     // forms
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll(formsSelector);
     const message = {
         loading: './img/form/spinner.svg',
         success: 'Thanks for your order!',
@@ -64,7 +64,7 @@ function forms() {
         const modalContent = document.querySelector('.modal__dialog');
 
         modalContent.classList.add('hide');
-        openModal();
+        openModal(modalTimerId);
 
         const newModalContent = document.createElement('div');
         newModalContent.classList.add('modal__dialog');
