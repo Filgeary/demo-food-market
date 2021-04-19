@@ -1,11 +1,11 @@
 import { modalBox, openModal, closeModal } from '../utils/modalHelpers';
 
-function modal() {
-    const modalTrigger = document.querySelectorAll('[data-modal]');
+function modal(triggerSelector, modalCloseSelector, modalTimerId) {
+    const modalTrigger = document.querySelectorAll(triggerSelector);
 
     // add handlers to open modal
     modalTrigger.forEach((btn) => {
-        btn.addEventListener('click', openModal);
+        btn.addEventListener('click', () => openModal(modalTimerId));
     });
 
     // close modal
@@ -14,7 +14,7 @@ function modal() {
 
         if (
             target &&
-            (target.matches('[data-modal-close]') || target === modalBox)
+            (target.matches(modalCloseSelector) || target === modalBox)
         ) {
             closeModal();
         }
@@ -33,7 +33,7 @@ function modal() {
             window.pageYOffset + document.documentElement.clientHeight >=
             document.documentElement.scrollHeight
         ) {
-            openModal();
+            openModal(modalTimerId);
             window.removeEventListener('scroll', onScrollModalOpen);
         }
     }

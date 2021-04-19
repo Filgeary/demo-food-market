@@ -327,12 +327,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/modalHelpers */ "./js/utils/modalHelpers.js");
 
 
-function modal() {
-    const modalTrigger = document.querySelectorAll('[data-modal]');
+function modal(triggerSelector, modalCloseSelector, modalTimerId) {
+    const modalTrigger = document.querySelectorAll(triggerSelector);
 
     // add handlers to open modal
     modalTrigger.forEach((btn) => {
-        btn.addEventListener('click', _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal);
+        btn.addEventListener('click', () => (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal)(modalTimerId));
     });
 
     // close modal
@@ -341,7 +341,7 @@ function modal() {
 
         if (
             target &&
-            (target.matches('[data-modal-close]') || target === _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.modalBox)
+            (target.matches(modalCloseSelector) || target === _utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.modalBox)
         ) {
             (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.closeModal)();
         }
@@ -360,7 +360,7 @@ function modal() {
             window.pageYOffset + document.documentElement.clientHeight >=
             document.documentElement.scrollHeight
         ) {
-            (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal)();
+            (0,_utils_modalHelpers__WEBPACK_IMPORTED_MODULE_0__.openModal)(modalTimerId);
             window.removeEventListener('scroll', onScrollModalOpen);
         }
     }
@@ -828,7 +828,7 @@ window.addEventListener('DOMContentLoaded', () => {
     (0,_modules_calculator__WEBPACK_IMPORTED_MODULE_1__.default)();
     (0,_modules_cards__WEBPACK_IMPORTED_MODULE_2__.default)();
     (0,_modules_forms__WEBPACK_IMPORTED_MODULE_3__.default)('form', modalTimerId);
-    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_4__.default)();
+    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_4__.default)('[data-modal]', '[data-modal-close]', modalTimerId);
     (0,_modules_slider__WEBPACK_IMPORTED_MODULE_5__.default)();
     (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_6__.default)();
     (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__.default)();

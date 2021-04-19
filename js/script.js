@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
     calculator();
     cards();
     forms('form', modalTimerId);
-    modal();
+    modal('[data-modal]', '[data-modal-close]', modalTimerId);
     slider();
     tabs();
     timer();
