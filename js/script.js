@@ -40,5 +40,5 @@ window.addEventListener('DOMContentLoaded', () => {
         tabItemsSelector: '.tabheader__item',
         activeClass: 'tabheader__item_active'
     });
-    timer();
+    timer('.timer', '2022-01-01');
 });

@@ -609,9 +609,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_getZero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/getZero */ "./js/utils/getZero.js");
 
 
-function timer() {
-    const deadline = '2022-01-01';
-
+function timer(selector, deadline) {
     function getTimeRemaining(endtime) {
         const now = new Date();
         let timezoneOffset = now.getTimezoneOffset() * 60 * 1000;
@@ -664,7 +662,7 @@ function timer() {
         }
     }
 
-    setClock('.timer', deadline);
+    setClock(selector, deadline);
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);
@@ -861,7 +859,7 @@ window.addEventListener('DOMContentLoaded', () => {
         tabItemsSelector: '.tabheader__item',
         activeClass: 'tabheader__item_active'
     });
-    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__.default)();
+    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__.default)('.timer', '2022-01-01');
 });
 
 })();
