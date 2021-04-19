@@ -140,6 +140,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _utils_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/services */ "./js/utils/services.js");
+
+
 function cards() {
     class MenuCard {
         constructor(
@@ -190,20 +193,7 @@ function cards() {
     // fetch local db.json via json-server
     const urlGetLocalDB = 'http://localhost:3000/menu';
 
-    // getData
-    const getData = async (url) => {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error(
-                `Failed to fetch ${url}, status: ${response.status}`
-            );
-        }
-
-        return await response.json();
-    };
-
-    getData(urlGetLocalDB).then((data) => {
+    (0,_utils_services__WEBPACK_IMPORTED_MODULE_0__.getData)(urlGetLocalDB).then((data) => {
         data.forEach(({ img, altimg, title, descr, price }) => {
             new MenuCard(
                 img,
@@ -729,8 +719,19 @@ function closeModal() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getData": () => (/* binding */ getData),
 /* harmony export */   "postData": () => (/* binding */ postData)
 /* harmony export */ });
+const getData = async (url) => {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch ${url}, status: ${response.status}`);
+    }
+
+    return await response.json();
+};
+
 const postData = async (url, data) => {
     const response = await fetch(url, {
         method: 'POST',

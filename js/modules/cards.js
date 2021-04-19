@@ -1,3 +1,5 @@
+import { getData } from '../utils/services';
+
 function cards() {
     class MenuCard {
         constructor(
@@ -47,19 +49,6 @@ function cards() {
 
     // fetch local db.json via json-server
     const urlGetLocalDB = 'http://localhost:3000/menu';
-
-    // getData
-    const getData = async (url) => {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error(
-                `Failed to fetch ${url}, status: ${response.status}`
-            );
-        }
-
-        return await response.json();
-    };
 
     getData(urlGetLocalDB).then((data) => {
         data.forEach(({ img, altimg, title, descr, price }) => {
