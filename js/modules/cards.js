@@ -1,7 +1,6 @@
-function cards() {
-    // menu cards render
-    // =========================================================
+import { getData } from '../utils/services';
 
+function cards() {
     class MenuCard {
         constructor(
             src,
@@ -51,19 +50,6 @@ function cards() {
     // fetch local db.json via json-server
     const urlGetLocalDB = 'http://localhost:3000/menu';
 
-    // getData
-    const getData = async (url) => {
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error(
-                `Failed to fetch ${url}, status: ${response.status}`
-            );
-        }
-
-        return await response.json();
-    };
-
     getData(urlGetLocalDB).then((data) => {
         data.forEach(({ img, altimg, title, descr, price }) => {
             new MenuCard(
@@ -78,4 +64,4 @@ function cards() {
     });
 }
 
-module.exports = cards;
+export default cards;

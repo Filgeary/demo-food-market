@@ -1,4 +1,15 @@
-function slider() {
+import { getZero } from '../utils/getZero';
+
+function slider({
+    container,
+    slide,
+    wrapper,
+    inner,
+    currentCounter,
+    totalCounter,
+    prevArrow,
+    nextArrow
+}) {
     // slider #1
     // =========================================================
 
@@ -39,25 +50,17 @@ function slider() {
     // slider #2
     // =========================================================
 
-    // utils
-    function getZero(number) {
-        if (number >= 0 && number < 10) {
-            return '0' + number;
-        }
-        return number;
-    }
+    const slider = document.querySelector(container);
 
-    const slider = document.querySelector('.offer__slider');
-
-    const slides = slider.querySelectorAll('.offer__slide');
-    const sliderWrapper = slider.querySelector('.offer__slider-wrapper');
+    const slides = slider.querySelectorAll(slide);
+    const sliderWrapper = slider.querySelector(wrapper);
     const widthSliderWrapper = window.getComputedStyle(sliderWrapper).width;
-    const sliderInner = slider.querySelector('.offer__slider-inner');
+    const sliderInner = slider.querySelector(inner);
 
-    const currentSlide = slider.querySelector('#current');
-    const totalSlides = slider.querySelector('#total');
-    const sliderPrev = slider.querySelector('.offer__slider-prev');
-    const sliderNext = slider.querySelector('.offer__slider-next');
+    const currentSlide = slider.querySelector(currentCounter);
+    const totalSlides = slider.querySelector(totalCounter);
+    const sliderPrev = slider.querySelector(prevArrow);
+    const sliderNext = slider.querySelector(nextArrow);
 
     let slideIndex = 1;
     let offset = 0;
@@ -141,4 +144,4 @@ function slider() {
     });
 }
 
-module.exports = slider;
+export default slider;

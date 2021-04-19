@@ -1,17 +1,6 @@
-function timer() {
-    // utils
-    function getZero(number) {
-        if (number >= 0 && number < 10) {
-            return '0' + number;
-        }
-        return number;
-    }
+import { getZero } from '../utils/getZero';
 
-    // timer
-    // =========================================================
-
-    const deadline = '2022-01-01';
-
+function timer(selector, deadline) {
     function getTimeRemaining(endtime) {
         const now = new Date();
         let timezoneOffset = now.getTimezoneOffset() * 60 * 1000;
@@ -64,7 +53,7 @@ function timer() {
         }
     }
 
-    setClock('.timer', deadline);
+    setClock(selector, deadline);
 }
 
-module.exports = timer;
+export default timer;
