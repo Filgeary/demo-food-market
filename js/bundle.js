@@ -545,11 +545,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function tabs() {
-    const tabContainer = document.querySelector('.tabcontainer');
-    const tabs = tabContainer.querySelectorAll('.tabcontent');
-    const tabItems = tabContainer.querySelectorAll('.tabheader__item');
-    const tabHeader = tabContainer.querySelector('.tabheader__items');
+function tabs({
+    container,
+    tabsSelector,
+    tabHeaderSelector,
+    tabItemsSelector,
+    activeClass
+}) {
+    const tabContainer = document.querySelector(container);
+    const tabs = tabContainer.querySelectorAll(tabsSelector);
+    const tabHeader = tabContainer.querySelector(tabHeaderSelector);
+    const tabItems = tabContainer.querySelectorAll(tabItemsSelector);
 
     const hideTabs = () => {
         tabs.forEach((item) => {
@@ -558,14 +564,14 @@ function tabs() {
         });
 
         tabItems.forEach((item) => {
-            item.classList.remove('tabheader__item_active');
+            item.classList.remove(activeClass);
         });
     };
 
     const showTabs = (i = 0) => {
         tabs[i].classList.add('show', 'fade');
         tabs[i].classList.remove('hide');
-        tabItems[i].classList.add('tabheader__item_active');
+        tabItems[i].classList.add(activeClass);
     };
 
     hideTabs();
@@ -574,7 +580,7 @@ function tabs() {
     tabHeader.addEventListener('click', (evt) => {
         const target = evt.target;
 
-        if (target && target.matches('.tabheader__item')) {
+        if (target && target.matches(tabItemsSelector)) {
             tabItems.forEach((item, i) => {
                 if (target == item) {
                     hideTabs();
@@ -848,7 +854,13 @@ window.addEventListener('DOMContentLoaded', () => {
         prevArrow: '.offer__slider-prev',
         nextArrow: '.offer__slider-next'
     });
-    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_6__.default)();
+    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_6__.default)({
+        container: '.tabcontainer',
+        tabsSelector: '.tabcontent',
+        tabHeaderSelector: '.tabheader__items',
+        tabItemsSelector: '.tabheader__item',
+        activeClass: 'tabheader__item_active'
+    });
     (0,_modules_timer__WEBPACK_IMPORTED_MODULE_7__.default)();
 });
 

@@ -33,6 +33,12 @@ window.addEventListener('DOMContentLoaded', () => {
         prevArrow: '.offer__slider-prev',
         nextArrow: '.offer__slider-next'
     });
-    tabs();
+    tabs({
+        container: '.tabcontainer',
+        tabsSelector: '.tabcontent',
+        tabHeaderSelector: '.tabheader__items',
+        tabItemsSelector: '.tabheader__item',
+        activeClass: 'tabheader__item_active'
+    });
     timer();
 });
