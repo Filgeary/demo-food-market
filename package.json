@@ -4,13 +4,21 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy-assets": "gulp copyAssets",
+    "server": "webpack serve --open",
+    "deploy-github": "gh-pages -d public",
+    "start": "npm run copy-assets && npx webpack"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "del": "^6.0.0",
+    "gh-pages": "^3.1.0",
+    "gulp": "^4.0.2",
     "json-server": "^0.16.3",
     "webpack": "^5.33.2",
-    "webpack-cli": "^4.6.0"
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }

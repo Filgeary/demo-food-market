@@ -1,17 +1,14 @@
-'use strict';
-
 const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './js/script.js',
+    entry: './src/js/script.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'js')
+        path: path.resolve(__dirname, 'public')
     },
-    watch: true,
-
     devtool: 'source-map',
-
-    module: {}
+    devServer: {
+        contentBase: './public'
+    }
 };
