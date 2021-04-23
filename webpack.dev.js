@@ -5,10 +5,8 @@ module.exports = {
     entry: './src/js/script.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'public')
+        path: path.resolve(__dirname, 'public/js')
     },
-    devtool: 'source-map',
-    devServer: {
-        contentBase: './public'
-    }
+    watch: true,
+    devtool: 'source-map'
 };

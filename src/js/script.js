@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // open modal by timeout
     const modalTimerId = setTimeout(() => {
         openModal(modalTimerId);
-    }, 30000);
+    }, 60000);
 
     // modules
     calculator();
