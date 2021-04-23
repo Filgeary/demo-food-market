@@ -13,4 +13,5 @@
 - Rewrite XHR to Fetch (Promise, async/await)
 - GET Menu cards & POST Form via Fake REST API (http-server, json-server)
 - localStorage & RegExp (a little bit)
-- JS ES6 Modules via webpack
+- JS ES6 Modules
+- gulp, webpack & babel
