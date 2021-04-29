@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Buy food on Food Market !" />
-    <title>Food Market</title>
+    <meta
+      name="description"
+      content="Покупайте в Магазине здорового питания!"
+    />
+    <title>Магазин здорового питания</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
@@ -257,7 +265,7 @@
             required
             placeholder="Ваш номер телефона"
             name="phone"
-            type="phone"
+            type="tel"
             class="order__input"
           />
           <img src="icons/right.svg" alt="right" />
@@ -283,22 +291,23 @@
         </div>
         <div class="promotion__timer">
           <div class="title">Осталось до Нового 2022 года:</div>
+          <div class="promotion__title-desc">время местное</div>
           <div class="timer">
             <div class="timer__block">
               <span id="days">12</span>
-              дней
+              дн
             </div>
             <div class="timer__block">
-              <span id="hours">20</span>
-              часов
+              <span id="hours">17</span>
+              час
             </div>
             <div class="timer__block">
-              <span id="minutes">56</span>
-              минут
+              <span id="minutes">55</span>
+              мин
             </div>
             <div class="timer__block">
-              <span id="seconds">20</span>
-              секунд
+              <span id="seconds">42</span>
+              сек
             </div>
           </div>
         </div>
@@ -316,13 +325,26 @@
           <img src="icons/veg.svg" alt="pepper" />
         </div>
         <div class="call">
-          <div class="subtitle">Или позвоните нам</div>
-          <a href="#" class="link">+380678341034</a>
-          <a href="#" class="link">+380500941356</a>
+          <div class="subtitle">Development</div>
+          <a
+            class="link"
+            href="https://www.udemy.com/course/javascript_full/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Markup by Udemy course</a
+          >
+          <a
+            class="link"
+            href="https://github.com/Filgeary"
+            target="_blank"
+            rel="noopener noreferrer"
+            >JS code by Filgeary</a
+          >
         </div>
       </div>
     </footer>
 
+    <!-- Modal Box -->
     <div class="modal">
       <div class="modal__dialog">
         <div class="modal__content">
@@ -342,7 +364,7 @@
               required
               placeholder="Ваш номер телефона"
               name="phone"
-              type="phone"
+              type="tel"
               class="modal__input"
             />
             <button class="btn btn_dark btn_min">Перезвонить мне</button>

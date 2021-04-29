@@ -47,7 +47,7 @@ function calculator() {
 
     function calcTotal() {
         if (!sex || !height || !weight || !age || !ratio) {
-            result.textContent = '____';
+            result.textContent = '0';
             return;
         }
 
