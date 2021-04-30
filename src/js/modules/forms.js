@@ -1,16 +1,12 @@
 import { openModal, closeModal } from '../utils/modalHelpers';
 import { postData } from '../utils/services';
 
-function forms(formsSelector, modalTimerId) {
-    // fetch local db.json via json-server
-    const urlPostLocalDB = 'http://localhost:3000/requests';
-
-    // forms
+function forms(formsSelector, urlPostData, modalTimerId) {
     const forms = document.querySelectorAll(formsSelector);
     const message = {
         loading: './img/form/spinner.svg',
-        success: 'Thanks for your order!',
-        error: '! Something WRONG !'
+        success: 'Спасибо за Ваш Заказ!',
+        error: '! Что-то пошло не так... !'
     };
 
     forms.forEach((item) => {
@@ -32,7 +28,7 @@ function forms(formsSelector, modalTimerId) {
             const dataForm = new FormData(form);
             const json = JSON.stringify(Object.fromEntries(dataForm.entries()));
 
-            postData(urlPostLocalDB, json)
+            postData(urlPostData, json)
                 .then((data) => {
                     console.log(data);
                     showFormMessage(message.success);

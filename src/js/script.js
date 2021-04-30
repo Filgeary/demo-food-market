@@ -13,12 +13,10 @@ import tabs from './modules/tabs';
 import timer from './modules/timer';
 
 window.addEventListener('DOMContentLoaded', () => {
-    // fetch local db.json via json-server
-    // const urlGetLocalDB = 'http://localhost:3000/menu';
-
-    // getData
+    // getData & postData
     const URL = {
-        getData: 'https://filgeary.github.io/demo-food-market/db.json'
+        getData: 'https://filgeary.github.io/demo-food-market/db.json',
+        postData: 'https://jsonplaceholder.typicode.com/posts'
     };
 
     // open modal by timeout
@@ -29,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // modules
     calculator();
     cards(URL.getData);
-    forms('form', modalTimerId);
+    forms('form', URL.postData, modalTimerId);
     modal('[data-modal]', '[data-modal-close]', modalTimerId);
     slider({
         container: '.offer__slider',
