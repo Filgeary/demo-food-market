@@ -1,9 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap&subset=cyrillic-ext);
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Roboto, sans-serif;
+    font-family: 'Raleway', 'Arial', sans-serif;
 }
 a {
     text-decoration: none;
@@ -344,8 +343,8 @@ a {
     transition: 0.3s all;
 }
 .calculating__choose-item_active {
-    color: #fff;
-    background-color: #54ed39;
+    color: #555;
+    background-color: #56ed3b;
 }
 .calculating__choose_medium {
     width: 743px;
@@ -605,6 +604,10 @@ a {
     width: 280px;
     margin: 0 auto;
 }
+
+/* add new props
+================================================= */
+
 .show {
     display: block;
 }
@@ -635,7 +638,6 @@ a {
     margin-left: 15%;
     list-style: none;
 }
-
 .dot {
     box-sizing: content-box;
     flex: 0 1 auto;
@@ -650,4 +652,27 @@ a {
     border-bottom: 10px solid transparent;
     opacity: 0.5;
     transition: opacity 0.6s ease;
+}
+.promotion__title-desc {
+    margin-top: 10px;
+    text-align: center;
+    font-style: italic;
+}
+.visually-hidden:not(:focus):not(:active),
+input[type='checkbox'].visually-hidden,
+input[type='radio'].visually-hidden {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    border: 0;
+
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
 }
