@@ -13,6 +13,14 @@ import tabs from './modules/tabs';
 import timer from './modules/timer';
 
 window.addEventListener('DOMContentLoaded', () => {
+    // fetch local db.json via json-server
+    // const urlGetLocalDB = 'http://localhost:3000/menu';
+
+    // getData
+    const URL = {
+        getData: 'https://filgeary.github.io/demo-food-market/db.json'
+    };
+
     // open modal by timeout
     const modalTimerId = setTimeout(() => {
         openModal(modalTimerId);
@@ -20,7 +28,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // modules
     calculator();
-    cards();
+    cards(URL.getData);
     forms('form', modalTimerId);
     modal('[data-modal]', '[data-modal-close]', modalTimerId);
     slider({

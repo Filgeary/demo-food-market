@@ -1,6 +1,6 @@
 import { getData } from '../utils/services';
 
-function cards() {
+function cards(urlGetData) {
     class MenuCard {
         constructor(
             src,
@@ -47,10 +47,7 @@ function cards() {
         }
     }
 
-    // fetch local db.json via json-server
-    const urlGetLocalDB = 'http://localhost:3000/menu';
-
-    getData(urlGetLocalDB).then((data) => {
+    getData(urlGetData).then((data) => {
         data.forEach(({ img, altimg, title, descr, price }) => {
             new MenuCard(
                 img,
