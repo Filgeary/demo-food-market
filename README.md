@@ -1,7 +1,9 @@
 # JS-training-project
 
-> markup by udemy_JS-React course
-> 
+> training project from [Udemy course](https://www.udemy.com/course/javascript_full/)
+>
+> only desktop resolution (markup as is)
+>
 > build folder on branch `gh-pages`
 
 ## Features
@@ -15,17 +17,21 @@
 - Posting Form data to server (XHR)
 - User notifications depending on Form status
 - Rewrite XHR to Fetch (Promise, async/await)
-- GET Menu cards & POST Form via Fake REST API (http-server, json-server)
+- GET Menu cards via _virtual_ DB - `db.json`
+- POST Form via Fake REST API (json-placeholder)
 - localStorage & RegExp (a little bit)
 - JS ES6 Modules
 - gulp, webpack & babel
-- webp & New image format `avif` for first screen
-- Support modern browsers
+- webp with fallback (jpg via picture)
+- _New_ image format `avif` for first screen (now only Chrome)
+- Variable fonts
+- Support modern browsers (recommend Chrome)
+- Google Audit in Green zone - 30.04.2021 (desktop resolution)
 
-## Setup
+## Dev Setup
 
 ```bash
-npx json-server src/db.json
+npm i
 npm start
-http-server
+npx http-server -o
 ```
