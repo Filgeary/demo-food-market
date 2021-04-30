@@ -1,6 +1,8 @@
 # JS-training-project
 
-> add interactive elements
+> markup by udemy_JS-React course
+> 
+> build folder on branch `gh-pages`
 
 ## Features
 
