@@ -19,7 +19,7 @@
 - localStorage & RegExp (a little bit)
 - JS ES6 Modules
 - gulp, webpack & babel
-- webp & New format `avif` for first screen
+- webp & New image format `avif` for first screen
 - Support modern browsers
 
 ## Setup
