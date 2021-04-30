@@ -2,6 +2,8 @@
 
 > add interactive elements
 
+## Features
+
 - Tabs
 - Slider (with navigation)
 - Calculator
@@ -15,3 +17,5 @@
 - localStorage & RegExp (a little bit)
 - JS ES6 Modules
 - gulp, webpack & babel
+- webp & New format `avif` for first screen
+- Support modern browsers
