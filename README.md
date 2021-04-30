@@ -19,3 +19,11 @@
 - gulp, webpack & babel
 - webp & New format `avif` for first screen
 - Support modern browsers
+
+## Setup
+
+```bash
+npx json-server src/db.json
+npm start
+http-server
+```
