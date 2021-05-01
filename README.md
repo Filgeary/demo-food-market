@@ -33,5 +33,5 @@
 ```bash
 npm i
 npm start
-npx http-server -o
+http-server -o
 ```
