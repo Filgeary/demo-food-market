@@ -47,18 +47,22 @@ function cards(urlGetData) {
         }
     }
 
-    getData(urlGetData).then((data) => {
-        data.forEach(({ img, altimg, title, descr, price }) => {
-            new MenuCard(
-                img,
-                altimg,
-                title,
-                descr,
-                price,
-                '.menu .container'
-            ).render();
+    getData(urlGetData)
+        .then((data) => {
+            data.forEach(({ img, altimg, title, descr, price }) => {
+                new MenuCard(
+                    img,
+                    altimg,
+                    title,
+                    descr,
+                    price,
+                    '.menu .container'
+                ).render();
+            });
+        })
+        .catch((err) => {
+            throw new Error('Invalid data', err);
         });
-    });
 }
 
 export default cards;
